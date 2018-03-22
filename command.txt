@@ -1,0 +1,5 @@
+$ npm init -y
+# -y คือปกติ npm จะถามคำถามนิดหน่อย ซึ่ง -y คือใช้ค่า default ที่ npm ให้มา
+
+$ npm install express --save-dev
+
