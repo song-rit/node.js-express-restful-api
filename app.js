@@ -21,20 +21,6 @@ app.get('/users/:id', (req, res) => {
     res.json(users.find(user => user.id === id))
 })
 
-app.get('/getUserByParam', (req, res) => {
-    // wait for request param from get method
-    const id = req.query.id
-    
-    // this is older format
-    //var id = req.body('id')
-
-    res.setHeader('Content-Type', 'application/json');
-
-    // res.send(JSON.stringify({ a: 1 }, null, 3));
-
-    res.json(users.find(user => user.id === id))
-})
-
 app.post('/users', (req, res) => {
     const user = req.body
     users.push(user)
@@ -48,7 +34,6 @@ app.put('/users/:id', (req, res) => {
     const updateIndex = users.findIndex(user => user.id === id)
     const user = req.body
     res.json(Object.assign(users[updateIndex], user))
-
 })
 
 app.delete('/users/:id', (req, res) => {
@@ -56,7 +41,63 @@ app.delete('/users/:id', (req, res) => {
     const deleteIndex = users.findIndex(user => user.id === id)
     users.splice(deleteIndex, 1)
     res.status(204).send()
+})
 
+app.get('/getUsers', (req, res) => {
+    // wait for request param from get method
+    const id = req.query.id
+    
+    // this is older format
+    //var id = req.body('id')
+
+    res.setHeader('Content-Type', 'application/json');
+
+    // res.send(JSON.stringify({ a: 1 }, null, 3));
+    const result = users
+    res.json(result)
+})
+
+app.get('/getUserById', (req, res) => {
+    // wait for request param from get method
+    const id = req.query.id
+    
+    // this is older format
+    //var id = req.body('id')
+
+    res.setHeader('Content-Type', 'application/json');
+
+    // res.send(JSON.stringify({ a: 1 }, null, 3));
+    const result = users.find(user => user.id === id)
+    res.json(result)
+})
+
+app.post('/addUser', (req, res) => {
+    
+    const user = req.body
+    users.push(user)
+    res.setHeader('Content-Type', 'application/json');
+    res.status(201)
+        .send(JSON.stringify({ status:  "success"}, null, 3));
+})
+
+app.post('/updateUser', (req, res) => {
+    const user = req.body
+    const updateId = user.id
+    const updateIndex = users.findIndex(user => user.id === updateId)
+
+    // users.push(user)
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({status: "success"}, null, 3))
+})
+
+app.get('/deleteUserById', (req, res) => {
+    const deleteId = req.query.id
+    const deleteIndex = users.findIndex(user => user.id === deleteId)
+    users.splice(deleteIndex, 1)
+    res.setHeader('Content-Type', 'application/json');
+    // res.json(users.splice(deleteIndex, 1))
+
+    res.send(JSON.stringify({ status:  "success"}, null, 3));
 })
 
 app.listen(8888, () => {
