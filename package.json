@@ -20,5 +20,9 @@
   "homepage": "https://github.com/song-rit/node.js-express-restful-api#readme",
   "devDependencies": {
     "express": "^4.16.3"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "sync-request": "^6.0.0"
   }
 }
